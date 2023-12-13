@@ -25,3 +25,7 @@ keys for you to access the data (which ofcourse is not provided). Also this is m
  - Ensure to have your own credentionals to upload a database on your local machine 
  - Make sure to run through the docstrings provided for each method with the Class to get a better undertstanding
  - The other Files are examples of how and what the methods are used for( In any case you do wish to get a better understanding of how they are used)
+
+
+### Additional-Notes
+ - Please if you also manange to compress and make the code more efficient. Access to that would be much appreciated and grateful
