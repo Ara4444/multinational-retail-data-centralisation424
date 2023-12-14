@@ -6,8 +6,7 @@ and make it accessible from one centralised location allowing for an efficient w
 - A Class with multiple methods to extract data from different data sources(code located in the file data_extraction.py)
 - A Class with multiple methods to clean the data from different data sources(code located in the file data_cleaning.py)
 - A Class with methods that upload the cleaned data to a PostgreSQL Database(code located in the file database_utils.py)
-- The rest of the files are for the implemention and uses of the classes above for each of the unique data retrieved from the different data sources
-  (list of these files:(user_and_card_details.py, store_details.py, product_details.py, orders_table_details.py and sales_date_details.py))
+
 
 ### Description
 This project as stated above is to allow access to a company's sales data from one centralised location. These classes work with data that have been mainly
@@ -24,7 +23,7 @@ keys for you to access the data (which ofcourse is not provided). Also this is m
  - Ensure that you also provide the credentials needed for you to extract the information needed
  - Ensure to have your own credentials to upload a database on your local machine 
  - Make sure to run through the docstrings provided for each method with the Class to get a better undertstanding
- - The other Files are examples of how and what the methods are used for( In any case you do wish to get a better understanding of how they are used)
+ 
 
 
 ### Additional-Notes
