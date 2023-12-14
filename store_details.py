@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
  ## Line 20-34 is dealing with retrieving, cleaning and uploading each store to an SQL Database through the use of an API.
  retrieve_store_endpoint = 'https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/store_details/{store_number}'
- store_numbers = list(range(0,452))
+ store_numbers = list(range(1,452))
  for store_number in store_numbers: 
   formatted_endpoint = retrieve_store_endpoint.format(store_number=store_number)
   try:
