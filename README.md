@@ -11,7 +11,7 @@ and make it accessible from one centralised location allowing for an efficient w
 
 ### Description
 This project as stated above is to allow access to a company's sales data from one centralised location. These classes work with data that have been mainly
-stored in various locations such as an API, CSV files, JSON files and Also in an AWS Database or an S3 bucket. Therefore certain methods would require credentionals or API
+stored in various locations such as an API, CSV files, JSON files and Also in an AWS Database or an S3 bucket. Therefore certain methods would require credentials or API
 keys for you to access the data (which ofcourse is not provided). Also this is mainly for uploading the data to a Postgres Database.
 
 
@@ -21,7 +21,11 @@ keys for you to access the data (which ofcourse is not provided). Also this is m
 
 
 ### Key-Notes
- - Ensure that you also provide the credentionals needed for you to extract the information needed
- - Ensure to have your own credentionals to upload a database on your local machine 
+ - Ensure that you also provide the credentials needed for you to extract the information needed
+ - Ensure to have your own credentials to upload a database on your local machine 
  - Make sure to run through the docstrings provided for each method with the Class to get a better undertstanding
  - The other Files are examples of how and what the methods are used for( In any case you do wish to get a better understanding of how they are used)
+
+
+### Additional-Notes
+ - Please if you also manange to compress and make the code more efficient. Access to that would be much appreciated and grateful
