@@ -6,7 +6,7 @@ and make it accessible from one centralised location allowing for an efficient w
 - **data_extraction.py**: A Class with multiple methods to extract data from different data sources 
 - **data_cleaning.py A**: A Class with multiple methods to clean the data from different data sources  
 - **database_utils.py**: A Class with methods that upload the cleaned data to a PostgreSQL Database database_utils.py
-- **sql_queries** contains query files that deal with creating the schema of the databse(ensuring correct datatypes,creating foreign keys and primary keys):
+- **sql_queries** contains query files that deal with creating the schema of the database(ensuring correct datatypes,creating foreign keys and primary keys):
      - **orders_table_datatypes.sql**
      - **dim_users_datatypes.sql**
      - **dim_store_details_datatypes.sql**
