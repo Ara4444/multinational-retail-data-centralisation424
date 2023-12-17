@@ -31,7 +31,8 @@ keys for you to access the data (which ofcourse is not provided). Also this is m
  https://github.com/Ara4444/multinational-retail-data-centralisation424.git
  ``` 
 - The files you will find useful are mainly the Classes(listed above in Key-Features)
-
+- The sql queries folder includes files that deal with the correction for the column datatypes for each table within the database.(Explanations of how and why are included
+  within docstrings for each file. 
 
 ### Key-Notes
  - Ensure that you also provide the credentials needed for you to extract the information needed
