@@ -1,5 +1,6 @@
 import pandas as pd
-
+import re
+import numpy as np
 
 class DataCleaning():
  """
@@ -17,10 +18,19 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
-  user_data_df['phone_number'] = pd.to_numeric(user_data_df['phone_number'], errors='coerce')
-  user_data_df['join_date'] = pd.to_datetime(user_data_df['join_date'], errors='coerce')
-  user_data_df['date_of_birth'] = pd.to_datetime(user_data_df['date_of_birth'], errors='coerce')
-  user_data_df = user_data_df.dropna(subset=['phone_number'])
+  user_data_df.replace('NULL',np.nan,inplace=True)
+  user_data_df.dropna(inplace=True)
+  user_data_df['date_of_birth'] = pd.to_datetime(user_data_df['date_of_birth'],errors='ignore')
+  user_data_df['join_date'] = pd.to_datetime(user_data_df['join_date'],errors='coerce')
+  user_data_df['country_code'] = user_data_df['country_code'].str.replace('GGB','GB')
+  user_data_df = user_data_df.dropna(subset='join_date')
+  user_data_df = user_data_df.drop_duplicates(subset=['email_address'])
+  need_to_replace = ['.', ' ']
+
+  for i in need_to_replace:
+   user_data_df['phone_number'] = user_data_df['phone_number'].str.replace(i,'')
+
+  user_data_df.drop(user_data_df.columns[0],axis=1, inplace=True)
   return user_data_df
  
  def clean_card_details_data(self, card_details_df: pd.DataFrame):
@@ -40,6 +50,10 @@ class DataCleaning():
   card_details_df['card_number'] = card_details_df['card_number'].apply(lambda x: '{:.0f}'.format(float(x)))
   return card_details_df
  
+ def convert_staffno_in__store_data_to_numeric(staff):
+    numeric_part = re.sub(r'[^0-9.]', '', str(staff))
+    return int(numeric_part)
+ 
  def clean_store_data(self, store_data: pd.DataFrame):
   """
   This function is used to perform cleaning on the store data such as dropping columns with unnecessary data, 
@@ -51,11 +65,15 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
+  
   columns_to_drop = ['lat']
   cleaned_data = store_data.drop(columns_to_drop, axis=1)
   cleaned_data['longitude'] = pd.to_numeric(cleaned_data['longitude'], errors='coerce')
   cleaned_data['latitude'] = pd.to_numeric(cleaned_data['latitude'], errors='coerce')
   cleaned_data = cleaned_data.dropna(subset=['longitude', 'latitude'])
+  cleaned_data['staff_numbers'] = cleaned_data['staff_numbers'].str.extract(pat='(\d+)', expand=False)
+  cleaned_data['continent'] = cleaned_data['continent'].str.replace('eeEurope','Europe')
+  cleaned_data['continent'] = cleaned_data['continent'].str.replace('eeAmerica','America')
   cleaned_data = cleaned_data.dropna()
   return cleaned_data
  
@@ -113,7 +131,7 @@ class DataCleaning():
   df = df.drop(columns=columns_to_drop)
   return df
  
- def clean_date_details(self, df): 
+ def clean_date_details(self, cleaned_df): 
   """
   This function is used to clean the sales date data by changing the datatype of specific columns and removing any missing or NULL value.
 
@@ -123,22 +141,11 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
-  cleaned_df = df.dropna()
+  
   cleaned_df['date'] = cleaned_df['year'].astype(str) + cleaned_df['month'].astype(str).str.zfill(2) + cleaned_df['day'].astype(str).str.zfill(2)
   cleaned_df['date'] = pd.to_datetime(cleaned_df['date'], errors='coerce')
+  cleaned_df = cleaned_df.dropna()
   return cleaned_df
  
- def clean_date_columns(self, df):
-  """
-  This function is used to clean the sales date data such as dropping columns with unnecessary data.
 
-  Parameters:
-   - df (pd.DataFrame): Pandas DataFrame containing sales date data
-
-  Returns:
-   - pd.DataFrame: Cleaned Pandas DataFrame
-  """
-  columns_to_drop = ['month', 'year', 'day']
-  df.drop(columns=columns_to_drop, axis=1, inplace=True)
-  return df
   
