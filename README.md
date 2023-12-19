@@ -6,7 +6,7 @@ and make it accessible from one centralised location allowing for an efficient w
 - **data_extraction.py**: A Class with multiple methods to extract data from different data sources 
 - **data_cleaning.py A**: A Class with multiple methods to clean the data from different data sources  
 - **database_utils.py**: A Class with methods that upload the cleaned data to a PostgreSQL Database database_utils.py
-- **sql_queries** contains query files that deal with creating the schema of the databse(ensuring correct datatypes,creating foreign keys and primary keys):
+- **sql_queries** contains query files that deal with creating the schema of the database(ensuring correct datatypes,creating foreign keys and primary keys):
      - **orders_table_datatypes.sql**
      - **dim_users_datatypes.sql**
      - **dim_store_details_datatypes.sql**
@@ -31,7 +31,8 @@ keys for you to access the data (which ofcourse is not provided). Also this is m
  https://github.com/Ara4444/multinational-retail-data-centralisation424.git
  ``` 
 - The files you will find useful are mainly the Classes(listed above in Key-Features)
-
+- The sql queries folder includes files that deal with the correction for the column datatypes for each table within the database.(Explanations of how and why are included
+  within docstrings for each file. 
 
 ### Key-Notes
  - Ensure that you also provide the credentials needed for you to extract the information needed
