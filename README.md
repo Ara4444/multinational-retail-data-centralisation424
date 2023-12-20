@@ -54,7 +54,7 @@ valuable business insights to allow for the company to make decisions based on t
  - Ensure that you also provide the credentials needed for you to extract the information needed
  - Ensure to have your own credentials to upload a database on your local machine 
  - Make sure to run through the docstrings provided for each method within the Class to get a better undertstanding of it's function(s)
- - Also note that many different libraries and python packages were used so please ensure you have the necessary packages installed[required_packages.txt](required_packages.txt)
+ - Also note that many different libraries and python packages were used so please ensure you have the necessary packages installed ([required_packages.txt](required_packages.txt)).
  
 
 ### Additional-Notes
