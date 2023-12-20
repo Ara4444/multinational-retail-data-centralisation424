@@ -4,30 +4,30 @@ and make it accessible from one centralised location allowing for an efficient w
 
 
 ### File Structure
-- **data_extraction.py**: A Class with multiple methods to extract data from different data sources 
-- **data_cleaning.py A**: A Class with multiple methods to clean the data from different data sources  
-- **database_utils.py**: A Class with methods that upload the cleaned data to a PostgreSQL Database database_utils.py
-- **sql_queries**
+- ```data_extraction.py```: A Class with multiple methods to extract data from different data sources 
+- ```data_cleaning.py A```: A Class with multiple methods to clean the data from different data sources  
+- ```database_utils.py```: A Class with methods that upload the cleaned data to a PostgreSQL Database database_utils.py
+- **```sql_queries```**
  - contains query files that deal with creating the schema of the database(ensuring correct datatypes,creating foreign keys and primary keys):
-     - **orders_table_datatypes.sql**
-     - **dim_users_datatypes.sql**
-     - **dim_store_details_datatypes.sql**
-     - **dim_products_datatypes.sql**
-     - **dim_date_times_datatypes.sql**
-     - **dim_card_details_datatypes.sql**
-     - **creating_dim_pkeys.sql**
-     - **creating_fkeys_order_table.sql**
+     - ```orders_table_datatypes.sql```
+     - ```dim_users_datatypes.sql```
+     - ```dim_store_details_datatypes.sql```
+     - ```dim_products_datatypes.sql```
+     - ```dim_date_times_datatypes.sql```
+     - ```dim_card_details_datatypes.sql```
+     - ```creating_dim_pkeys.sql```
+     - ```creating_fkeys_order_table.sql```
  - contains query files that deal with extracting business insights using the sales_date database(via JOINs, CTEs and Basic Aggregrations):
-     - **stores_in_each_country.sql**
-     - **locations_with_most_stores.sql**
-     - **month_largest_sales.sql**
-     - **online_vs_offline_sales.sql**
-     - **percentage_of_store_type.sql**
-     - **month_in_year_production.sql**
-     - **staff_headcount.sql**
-     - **germany_store_types.sql**
-     - **time_between_each_sale.sql***
- - **README.md**: A markdown file containing the documentation with essential information.
+     - ```stores_in_each_country.sql```
+     - ```locations_with_most_stores.sql```
+     - ```month_largest_sales.sql```
+     - ```online_vs_offline_sales.sql```
+     - ```percentage_of_store_type.sql```
+     - ```month_in_year_production.sql```
+     - ```staff_headcount.sql```
+     - ```germany_store_types.sql```
+     - ```time_between_each_sale.sql```
+ - ```README.md```: A markdown file containing the documentation with essential information.
      
      
 ### Description
@@ -58,4 +58,4 @@ business insights to allow for the company to make decisions based on the data o
 
 
 ## License Info.
- - Licensed under the MIT License - Please direct yourself to the ```LICENSE.txt``` file for the specifics.
+ - Licensed under the MIT License - Please direct yourself to the (LICENSE.txt) file for the specifics.
