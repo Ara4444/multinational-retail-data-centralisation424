@@ -1,0 +1,13 @@
+- Name: pandas Version: 2.0.3
+
+- Name: numpy Version: 1.25.2
+
+- Name: SQLAlchemy Version: 2.0.23
+
+- Name: botocore/(Boto3) Version: 1.33.5
+
+- Name: tabula-py Version: 2.8.2
+
+- Name: PyYAML Version: 6.0.1
+
+- Name: requests Version: 2.31.0

@@ -35,14 +35,15 @@ and make it accessible from one centralised location allowing for an efficient w
 ### Description
 This project as stated above is to allow access to a company's sales data from one centralised location. These classes work with data that have been mainly
 stored in various locations such as an API, CSV files, JSON files and Also in an AWS Database or an S3 bucket. Therefore certain methods would require credentials or API
-keys for you to access the data (which ofcourse is not provided). Also this is mainly for uploading the data to a Database in Postgres. Where then the job was to develop 
-schema of the database and to ensure that the columns were converted to the correct datatypes. Once this was completed I would then use SQL effectively to extract valuable
-business insights to allow for the company to make decisions based on the data output of these queries.
+keys for you to access the data (which ofcourse is not provided). Also this is mainly for uploading the data to a Database in Postgres. Where then the job was to develop
+the schema of the database and to ensure that the columns were converted to the correct datatypes. Once this was completed I would then use SQL to effectively extract 
+valuable business insights to allow for the company to make decisions based on the data output of these queries.
 
 ### Usage/Installation
 - Clone the Repo to your local machine in a terminal using the link below:
  ```
- https://github.com/Ara4444/multinational-retail-data-centralisation424.git
+  git clone https://github.com/Ara4444/multinational-retail-data-centralisation424.git
+  cd multinational-retail-data-centralisation424
  ``` 
 - The files you will find useful are mainly the Classes(listed above in Key-Features)
 - The sql queries folder includes files that deal with the correction for the column datatypes for each table within the database.(Explanations of how and why are included
@@ -53,6 +54,7 @@ business insights to allow for the company to make decisions based on the data o
  - Ensure that you also provide the credentials needed for you to extract the information needed
  - Ensure to have your own credentials to upload a database on your local machine 
  - Make sure to run through the docstrings provided for each method within the Class to get a better undertstanding of it's function(s)
+ - Also note that many different libraries and python packages were used so please ensure you have the necessary packages installed[required_packages.txt](required_packages.txt)
  
 
 ### Additional-Notes
