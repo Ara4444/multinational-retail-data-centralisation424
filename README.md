@@ -28,6 +28,8 @@ and make it accessible from one centralised location allowing for an efficient w
      - ```germany_store_types.sql```
      - ```time_between_each_sale.sql```
  - ```README.md```: A markdown file containing the documentation with essential information.
+ - ```.gitignore```: Contains files that is not for the public and git ignores.
+ - ```LICENSE.txt```: A text file containing the details on MIT License used for this Project
      
      
 ### Description
@@ -58,4 +60,4 @@ business insights to allow for the company to make decisions based on the data o
 
 
 ## License Info.
- - Licensed under the MIT License - Please direct yourself to the (LICENSE.txt) file for the specifics.
+ - Licensed under the MIT License - Please direct yourself to the [LICENSE.txt](LICENSE.txt) file for the specifics.
