@@ -3,12 +3,12 @@ This project's main objective is to extract and clean the sales data for a multi
 and make it accessible from one centralised location allowing for an efficient way to become a more data-driven company.
 
 ### Table of Content
- 1) [FileStructure](File Structure)
- 2) [Description](Description)
- 3) [Usage/Installation](Usage/Installation)
- 4) [Key-Notes](Key-Notes)
- 5) [Additional-Notes](Additional-Notes)
- 6) [LicenseInfo.](LICENSE Info.)
+ 1) [File Structure](#file-structure)
+ 2) [Description](#description)
+ 3) [Usage/Installation](#usageinstallation)
+ 4) [Key-Notes](#key-notes)
+ 5) [Additional-Notes](#additional-notes)
+ 6) [LicenseInfo.](#license-info)
 ### File Structure
 - ```data_extraction.py```: A Class with multiple methods to extract data from different data sources 
 - ```data_cleaning.py A```: A Class with multiple methods to clean the data from different data sources  
