@@ -2,6 +2,7 @@
 This project's main objective is to extract and clean the sales data for a multinational retail company located in different data sources
 and make it accessible from one centralised location allowing for an efficient way to become a more data-driven company.
 
+
 ### File Structure
 - **data_extraction.py**: A Class with multiple methods to extract data from different data sources 
 - **data_cleaning.py A**: A Class with multiple methods to clean the data from different data sources  
@@ -29,12 +30,12 @@ and make it accessible from one centralised location allowing for an efficient w
  - **README.md**: A markdown file containing the documentation with essential information.
      
      
-
 ### Description
 This project as stated above is to allow access to a company's sales data from one centralised location. These classes work with data that have been mainly
 stored in various locations such as an API, CSV files, JSON files and Also in an AWS Database or an S3 bucket. Therefore certain methods would require credentials or API
-keys for you to access the data (which ofcourse is not provided). Also this is mainly for uploading the data to a Database in Postgres.
-
+keys for you to access the data (which ofcourse is not provided). Also this is mainly for uploading the data to a Database in Postgres. Where then the job was to develop 
+schema of the database and to ensure that the columns were converted to the correct datatypes. Once this was completed I would then use SQL effectively to extract valuable
+business insights to allow for the company to make decisions based on the data output of these queries.
 
 ### Usage/Installation
 - Clone the Repo to your local machine in a terminal using the link below:
@@ -44,14 +45,17 @@ keys for you to access the data (which ofcourse is not provided). Also this is m
 - The files you will find useful are mainly the Classes(listed above in Key-Features)
 - The sql queries folder includes files that deal with the correction for the column datatypes for each table within the database.(Explanations of how and why are included
   within docstrings for each file)
-- The sql queries also included the querying to extract valuable business insights and also what the function of the queries are is also included within docstrings 
+- The sql queries also included the querying to extract valuable business insights and the functions of each query is included within docstrings too.
 
 ### Key-Notes
  - Ensure that you also provide the credentials needed for you to extract the information needed
  - Ensure to have your own credentials to upload a database on your local machine 
- - Make sure to run through the docstrings provided for each method with the Class to get a better undertstanding
+ - Make sure to run through the docstrings provided for each method within the Class to get a better undertstanding of it's function(s)
  
-
 
 ### Additional-Notes
  - Also make any adjustments neccessary to make the code efficient in your cloned repo. A showcase of this would be also appreciated 
+
+
+## License Info.
+ - Licensed under the MIT License - Please direct yourself to the LICENSE.txt file for the specifics.
