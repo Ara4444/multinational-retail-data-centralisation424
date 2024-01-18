@@ -32,6 +32,7 @@ class DatabaseConnector():
   Returns:
    - credentials(dict): Returns the database credentials in the form of a dictionary
   """ 
+    # Read and Load the credentials needed from a YAML file
   with open(file_path, 'r') as file:
    creds = yaml.safe_load(file)
    return creds
@@ -48,7 +49,9 @@ class DatabaseConnector():
   """
   with open(creds, 'r') as file:
    creds = yaml.safe_load(file)
+    # The creds needed to construct the database URL which hold the data needed for extraction
   aws_db_url = f"postgresql://{creds['RDS_USER']}:{creds['RDS_PASSWORD']}@{creds['RDS_HOST']}:{creds['RDS_PORT']}/{creds['RDS_DATABASE']}"
+    # Creating the engine instance needed to make the necessary connections
   aws_engine = create_engine(aws_db_url)
   return aws_engine
  
@@ -62,9 +65,12 @@ class DatabaseConnector():
   Returns:
    - sqlalchemy.engine.base.Engine: The SQLAlchemy database engine
   """
+    # Accessing local credentials within a YAML file
   with open(db_file_path, "r") as f:
    db_creds = yaml.safe_load(f)
+    #  Contructing the local database URL needed for the uploading of the cleaned data
   db_url = f"postgresql://{db_creds['USER']}:{db_creds['PASSWORD']}@{db_creds['HOST']}:{db_creds['PORT']}/{db_creds['DATABASE']}"
+    # Creating the engine instance needed to make the necessary connections
   engine = create_engine(db_url)
   return engine
 
@@ -77,6 +83,7 @@ class DatabaseConnector():
   Returns: 
    - list: A list of tables
   """
+    # Inspecting and Retreiving the table names from the database
   inspector = inspect(self.init_db_engine())
   tables = inspector.get_table_names()
   return tables
@@ -90,16 +97,22 @@ class DatabaseConnector():
    - df (pd.DataFrame): The Pandas DataFrame to be uploaded
    - table_name (str): The name of the table to which the data will be uploaded
   """
+    # Connecting to the database
   connection = self.engine.connect()
+    # Initiating a transaction for data upload
   transaction = connection.begin()
   try:
+    # Uploading the DataFrame to a specified table and replacing existing tables
    df.to_sql(table_name, con=connection, if_exists='replace', index=False)
    print(f"Data uploaded to {table_name} successfully.")
+    # Committing the upload if successful
    transaction.commit()
   except Exception as e:
+    # Rolling back the transaction if an error occurs
     transaction.rollback()
     raise e
   finally:
+    # Finally closing the database connection
     connection.close()
 
 
@@ -111,14 +124,20 @@ class DatabaseConnector():
    - df (pd.DataFrame): The Pandas DataFrame to be uploaded.
    - table_name (str): The name of the table to which the data will be appended.
   """
+    # Connecting to the database
   connection = self.engine.connect()
+    # Initiating a transaction for data upload
   transaction = connection.begin()
   try:
+    # Uploadind the store DataFrame to a specified table and appending if there is an existing table  
    df.to_sql(table_name, con=connection, if_exists='append', index=False)
    print(f"Data uploaded to {table_name} successfully.")
+    # Committing the upload if successful
    transaction.commit()
   except Exception as e:
+    # Rolling back the transaction if an error occurs
     transaction.rollback()
     raise e
   finally:
+    # Finally closing the database connection
     connection.close()

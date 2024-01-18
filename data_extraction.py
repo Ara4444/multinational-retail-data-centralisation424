@@ -32,9 +32,13 @@ class DataExtractor():
   Returns:
    - pd.DataFrame: A Pandas DataFrame containing the extracted data from the specified table
   """
+    # An instance of the DatabaseConnector Class
   db_connector = DatabaseConnector()
+   # Initializing the daatabse engine
   engine = db_connector.init_db_engine() 
+   # SQL query to retrieve data from a specified table
   query = f"SELECT * FROM {table_name}"
+   # Perform the querying and retrieve the data in a DataFrame format
   df = pd.read_sql(query, engine)
   return df
  
@@ -52,9 +56,11 @@ class DataExtractor():
   pdf_path = link
 
   try:
+    # Uses tabula to read the PDF file
    dfs = tabula.read_pdf(pdf_path,  pages="all", multiple_tables=True)
     
    if dfs:
+     # if table are found than they are concatenated
     combined_data = pd.concat(dfs, ignore_index=True)
     return combined_data
 
@@ -111,11 +117,14 @@ class DataExtractor():
    - requests.Exeception: If the method returns an unexpected error
    - requests.RequestExeception: If the Request to the API returns an error 
   """
+   # Making the API Request to the store_endpoint
   response = self._make_api_request(store_endpoint)
 
   try:
+     # Ensuring the API request was successful
     response.raise_for_status()
     store_data = response.json()
+     # Checking if the content within the file is a list of stores or a single store
     if isinstance(store_data, list):
 
             store_df = pd.DataFrame(store_data)
@@ -139,20 +148,20 @@ class DataExtractor():
    - s3_address(str): A string representation of the S3 address in the format 's3://bucket_name/file_key'.
    
   Returns:
-   - Pd.DataFrame: A Pandas DataFrame containing the data extracted from the S3 file
-  Notes:
-   - This method uses the 'boto3' library to interact with AWS S3.
-   - The S3 address is parsed to extract the bucket name and file key.
-   - The content of the S3 file is retrieved and decoded from UTF-8.
-   - The decoded content is read into a Pandas DataFrame using StringIO.
+   - Pd.DataFrame: A Pandas DataFrame containing the data extracted from the S3 file 
   """
+   # Creates a S3 client using botocore with the appropriate configuration 
   s3_client = botocore.session.get_session().create_client('s3', config=botocore.config.Config(signature_version=botocore.UNSIGNED))
+   # Splitting the S3 address into bucket and key components
   bucket, key = s3_address.split('//')[1].split('/', 1)
+   # Requesting the object from an S3 bucket and key
   response = s3_client.get_object(Bucket=bucket, Key=key)
+   # Read and decoding the S3 object
   csv_content = response['Body'].read().decode('utf-8')
   df = pd.read_csv(StringIO(csv_content))
   return df
  
  def extract_sales_date_details_json(self, url):
+  # Reads a JSON file frim a URL abd returns it as a DataFrame
   sales_date_df = pd.read_json(url)
   return sales_date_df

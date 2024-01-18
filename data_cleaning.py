@@ -18,18 +18,25 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
+    # Replacing NULL values with NaN and dropping rows with NaN values
   user_data_df.replace('NULL',np.nan,inplace=True)
   user_data_df.dropna(inplace=True)
+    # Converting specified columns to datetime datatype and ignoring any errors
   user_data_df['date_of_birth'] = pd.to_datetime(user_data_df['date_of_birth'],errors='ignore')
+    # Converting specified columns to datetime datatype and coercing errors
   user_data_df['join_date'] = pd.to_datetime(user_data_df['join_date'],errors='coerce')
+    # Replacing 'GGB' with 'GB within the 'country_code' column
   user_data_df['country_code'] = user_data_df['country_code'].str.replace('GGB','GB')
+    # Dropping any NULL values in the 'joint_date'column
   user_data_df = user_data_df.dropna(subset='join_date')
+    #  Dropping duplicate rows based on the 'email_address' column
   user_data_df = user_data_df.drop_duplicates(subset=['email_address'])
+    # Replacing any '.' or ' ' in the phone_number column
   need_to_replace = ['.', ' ']
-
   for i in need_to_replace:
    user_data_df['phone_number'] = user_data_df['phone_number'].str.replace(i,'')
-
+    
+    # Dropping the first column in the users_data
   user_data_df.drop(user_data_df.columns[0],axis=1, inplace=True)
   return user_data_df
  
@@ -43,14 +50,20 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
+    # Converting the 'card_number' column to a string datatype
   card_details_df['card_number'] = card_details_df['card_number'].astype(str) 
+    # Removing any non-numerical values 
   card_details_df['card_number'] = card_details_df['card_number'].str.replace('[^\d]', '')
+    # Converting the 'card_number' column to a numeric datatype
   card_details_df['card_number'] = pd.to_numeric(card_details_df['card_number'], errors='coerce')
+    # Dropping any NULL values in the 'card_number' column
   card_details_df = card_details_df.dropna(subset=['card_number'])
+    # Converting 'card_number' column to a formatted string removing any decimal points
   card_details_df['card_number'] = card_details_df['card_number'].apply(lambda x: '{:.0f}'.format(float(x)))
   return card_details_df
  
  def convert_staffno_in__store_data_to_numeric(staff):
+    # Extract only numeric characters from the staff number and return it as an integer
     numeric_part = re.sub(r'[^0-9.]', '', str(staff))
     return int(numeric_part)
  
@@ -65,15 +78,20 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
-  
+    # Dropping the 'lat' column
   columns_to_drop = ['lat']
   cleaned_data = store_data.drop(columns_to_drop, axis=1)
+    # Converting both 'longitude' and 'latitude' columns to a numeric datatype and coercing errors
   cleaned_data['longitude'] = pd.to_numeric(cleaned_data['longitude'], errors='coerce')
   cleaned_data['latitude'] = pd.to_numeric(cleaned_data['latitude'], errors='coerce')
+    # Dropping any NULL values in the 'longitude' and 'latitude' columns
   cleaned_data = cleaned_data.dropna(subset=['longitude', 'latitude'])
+    # Extracting numeric values from the 'staff_numbers' column
   cleaned_data['staff_numbers'] = cleaned_data['staff_numbers'].str.extract(pat='(\d+)', expand=False)
+    # Replacing 'eeEurope' with 'Europe' and 'eeAmerica' with 'America' in the 'continent' column
   cleaned_data['continent'] = cleaned_data['continent'].str.replace('eeEurope','Europe')
   cleaned_data['continent'] = cleaned_data['continent'].str.replace('eeAmerica','America')
+    # Dropping any NULL values in the cleaned_data DataFrame
   cleaned_data = cleaned_data.dropna()
   return cleaned_data
  
@@ -90,9 +108,11 @@ class DataCleaning():
       valid weight string.
   """
   try:
+    # Extracting digits and '.' from the input string and converting to a float
    weight = float(''.join(c for c in str(weight_str) if c.isdigit() or c in {'.'}))
   except ValueError:
    return None 
+    # Checking the units in the input and converting to kg accordingly
   if 'kg' in str(weight_str):
    return weight
   elif 'g' in str(weight_str):
@@ -112,7 +132,7 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
-
+    # Dropping any NULL values and duplicates in the specified DataFrame
   cleaned_df = df.dropna()  
   cleaned_df = cleaned_df.drop_duplicates()  
   return cleaned_df
@@ -127,6 +147,7 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
+    # Dropping the 'first_name', 'last_name' and '1' columns
   columns_to_drop = ['first_name', 'last_name', '1']
   df = df.drop(columns=columns_to_drop)
   return df
@@ -141,9 +162,10 @@ class DataCleaning():
   Returns:
    - pd.DataFrame: Cleaned Pandas DataFrame
   """
-  
+    # Concatenating the 'year', 'month' and 'day' columns into one columns and converting it into datetime datatype
   cleaned_df['date'] = cleaned_df['year'].astype(str) + cleaned_df['month'].astype(str).str.zfill(2) + cleaned_df['day'].astype(str).str.zfill(2)
   cleaned_df['date'] = pd.to_datetime(cleaned_df['date'], errors='coerce')
+    # Dropping any NULL values
   cleaned_df = cleaned_df.dropna()
   return cleaned_df
  
